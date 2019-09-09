@@ -7,6 +7,22 @@ class App extends Component {
     photos: [],
    
   }
+  shuffle(arra1) {
+    var ctr = arra1.length, temp, index;
+
+// While there are elements in the array
+    while (ctr > 0) {
+// Pick a random index
+        index = Math.floor(Math.random() * ctr);
+// Decrease ctr by 1
+        ctr--;
+// And swap the last element with it
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
+}
   componentDidMount() {
     axios({
       method:'get',
@@ -15,7 +31,7 @@ class App extends Component {
        // Safari fix
     })
     .then(res => {
-      const photos = res.data;
+      const photos = this.shuffle(res.data);
       this.setState({ photos });
       console.log(photos);
     })
