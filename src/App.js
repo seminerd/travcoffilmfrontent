@@ -21,7 +21,6 @@ class App extends Component {
       newarr[ctr]=arra1[ctr];
 
     }
-    document.getElementById("spinner").parentNode.removeChild(document.getElementById("spinner"));
 
     return newarr;
   }

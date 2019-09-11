@@ -1,9 +1,13 @@
 import React from "react";
-import { Card, Form, Button, Navbar } from "react-bootstrap";
+import { Card, Form, Navbar } from "react-bootstrap";
 import "./App.css";
-import "mdbreact";
+import { Button } from "mdbreact";
 import { Parallax } from "react-parallax";
-
+var width = window.screen.availWidth;
+var height = window.screen.availHeight;
+var ratio = (height/width);
+const strength = width*1.5;
+const fix = ratio/0.041;
 const bg = "bg.jpg";
 const insideStyles = {
   padding: 20,
@@ -15,18 +19,18 @@ const insideStyles = {
 const Photos = ({ photos }) => {
   return (
     <React.Fragment>
-      <Parallax bgImage={bg} strength={3000}>
-        
-        <div style={{ height: 11500 }}>
+      <Parallax bgImage={bg} bgImageWidth={width*1.5} bgImageHeight={width*10} strength={width*2}>
+        <div >
           <div style={{ insideStyles }}>
             <Navbar className="navbar navbar-dark bg-transparent" fixed="top">
               <div align="left">
-                <img src="logo.png" width="200px"></img>
+                <img src="logo.png" alt="logo" width="200px"></img>
               </div>
             </Navbar>
             <div>
               <center>
                 <img
+                  alt="header"
                   src="enjoy.png"
                   width="300px"
                   style={{ marginBottom: "60px", marginTop: "50px" }}
@@ -36,12 +40,10 @@ const Photos = ({ photos }) => {
             {photos.map(photo => (
               <div key={photo.id} style={{ marginBottom: "40px" }}>
                 <center>
-                  <Card 
+                  <Card
                     className="shadow hoverable"
                     style={{
                       width: "42rem"
-                  
-                
                     }}
                   >
                     <Card.Img
@@ -49,20 +51,22 @@ const Photos = ({ photos }) => {
                       key={photo.id}
                       src={photo.source}
                       alt={photo.id}
-                      
                     />
                     <Card.Body>
-                      <Card.Title align="left"  >{photo.title}</Card.Title>
+                      <Card.Title align="left">{photo.title}</Card.Title>
 
-                      <Form >
-                        <Form.Group align="left" width="100px" controlId="formBasicEmail">
+                      <Form align="right">
+                        <Form.Group
+                          align="left"
+                          width="100px"
+                          controlId="formBasicEmail"
+                        >
                           <Form.Control
-                          
                             type="text"
                             placeholder="Comment here"
                           />
                         </Form.Group>
-                        <Button variant="light" align="right" type="submit">
+                        <Button type="button" className="btn btn-light-blue">
                           comment~
                         </Button>
                       </Form>
@@ -77,6 +81,7 @@ const Photos = ({ photos }) => {
           <div>
             <center>
               <img
+                alt="footer"
                 src="footer.npg.png"
                 width="400px"
                 style={{ marginTop: "50px" }}
